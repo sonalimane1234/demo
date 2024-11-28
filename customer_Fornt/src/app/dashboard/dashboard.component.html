@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<body class="dash-body">
+
+<div class="container-fluid">
+  <!-- navbar -->
+    <nav class="navbar" style="background-color: #82bcf7;">
+
+        <div class="container-fluid">
+            <div>
+            <a class="navbar-brand">
+                <img src="assets/" width="32" height="32" class="d-inline-block align-text-top">
+              Welcome to Customer Database System
+            </a>
+            <button class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#addCustomer" type="submit">Add Customer</button>
+            </div> 
+            <div>
+            <button class=logout-button (click)="clickLogout()">
+              <i class="fas fa-sign-out-alt"></i>LogOut</button>
+           </div>
+        </div>
+      </nav>  
+      <br>
+     <br>
+</div>
+<!-- Table Creation -->
+<div class="container">
+<table id="table_decor" class="table table-primary table-striped">
+<!-- <table class="table table-hover"> -->
+  <thead>
+    <tr>
+      <th scope="col">Customer ID</th>
+      <th scope="col">First Name</th>
+      <th scope="col">Last Name</th>
+      <th scope="col">Menu</th>
+      <th scope="col">Price</th>
+      <th scope="col">Action</th>
+    </tr><br>
+  </thead>
+  <tbody>
+    <tr *ngFor="let customer of CustomerList">
+      <td>{{customer.id}}</td>
+      <td>{{customer.firstname}}</td>
+      <td>{{customer.lastname}}</td>
+      <td>{{customer.menu}}</td>
+      <td>{{customer.price}}</td>
+      <td>
+    <button type="button" class="btn btn-outline-success me-2" data-bs-toggle="modal" data-bs-target="#editCustomer" (click)="editCustomerr(customer)"><b class="e">Edit</b></button>
+    <button type="button" class="btn btn-outline-danger" (click)="deleteCustomer(customer)"><b class="d">Delete</b></button>
+      </td>
+   </tr>
+  </tbody>
+</table>
+</div>
+
+
+       
+   
+<!-- Add customer--> 
+<div class="modal fade" id="addCustomer" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <a class="img">
+      </a>
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Add New Customer</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">     
+        <form [formGroup]="customerDetail" (ngSubmit)="loginUser()">
+          <div class="mb-3">
+            <label class="form-label">Customer ID</label>
+            <input type="number" formControlName="id" class="form-control" id="id" aria-describedby="emailHelp">
+            <span style="color: red;" *ngIf="id && id.invalid && id.touched">
+              <br>Invalid input field</span>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">First Name</label>
+            <input type="text" formControlName="firstname" class="form-control" id="firstname" aria-describedby="emailHelp">
+            <span style="color: red;" *ngIf="firstname && firstname.invalid && firstname.touched">
+              <br>Invalid input field</span>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Last Name</label>
+            <input type="text" formControlName="lastname" class="form-control" id="lastname" aria-describedby="emailHelp">
+            <span style="color: red;" *ngIf="lastname && lastname.invalid && lastname.touched">
+              <br>Invalid input field</span>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Menu</label>
+            <input type="text" formControlName="menu" class="form-control" id="menu" aria-describedby="emailHelp">
+            <span style="color: red;" *ngIf="menu && menu.invalid && menu.touched">
+              <br>Invalid input field</span>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Price</label>
+            <input type="number" formControlName="price" class="form-control" id="price" aria-describedby="emailHelp">
+            <span style="color: red;" *ngIf="price && price.invalid && price.touched">
+              <br>Invalid input field</span>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+            <button [disabled]="customerDetail.invalid" type="button" class="btn btn-success" data-bs-dismiss="modal" (click)="addCustomer()" >Add Profile</button>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>
+<!-- Update customer-->
+<div class="modal fade" id="editCustomer" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Update Customer Details</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <!-- update form -->
+        <form [formGroup]="customerDetail">
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Customer ID</label>
+            <input type="number" formControlName="id" class="form-control" id="id" aria-describedby="emailHelp">
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">First Name</label>
+            <input type="text" formControlName="firstname" class="form-control" id="firstname" aria-describedby="emailHelp">
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Last Name</label>
+            <input type="text" formControlName="lastname" class="form-control" id="lastname" aria-describedby="emailHelp">
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Menu</label>
+            <input type="test" formControlName="menu" class="form-control" id="menu" aria-describedby="emailHelp">
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Price</label>
+            <input type="number" formControlName="price" class="form-control" id="price" aria-describedby="emailHelp">
+          </div>     
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-success" (click)="UpdateCustomer()" data-bs-dismiss="modal">Update</button>
+          </div>
+        </form>
+      </div>
+      
+    </div>
+  </div>
+</div>
+</body>
+
+
+

@@ -1,0 +1,44 @@
+#table_decor{
+align-content: center;
+color: yellow;
+}
+th{
+    font-size: large;
+    font-style: inherit;
+}
+.modal-header{
+    background-color: rgb(194, 212, 212);
+}
+.modal-body{
+    background-color: rgba(110, 112, 105, 0.07); 
+}
+.modal-footer{
+    background-color: rgb(194, 212, 212);
+}
+td{
+    font-style:oblique;
+    color: blue;
+    font-weight: 700;
+}
+
+.navbar-brand{
+color: red;
+font-weight: 600;
+font-style: italic;
+}
+.navbar{
+    height: 60px;
+}
+.logout-button {
+    background-color: #FF5733; 
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.logout-button i {
+    margin-right: 5px;
+}
